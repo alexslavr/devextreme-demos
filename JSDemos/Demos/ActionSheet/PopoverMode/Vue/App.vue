@@ -20,12 +20,12 @@
   </div>
 </template>
 <script>
-import DxActionSheet from 'devextreme-vue/action-sheet';
-import DxList from 'devextreme-vue/list';
-import notify from 'devextreme/ui/notify';
+import DxActionSheet from "devextreme-vue/action-sheet";
+import DxList from "devextreme-vue/list";
+import notify from "devextreme/ui/notify";
 
-import { actionSheetItems, contacts } from './data.js';
-import ContactItem from './ContactItem.vue';
+import { actionSheetItems, contacts } from "./data.js";
+import ContactItem from "./ContactItem.vue";
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
       actionSheetItems,
       contacts,
       isActionSheetVisible: false,
-      actionSheetTarget: '',
+      actionSheetTarget: "",
     };
   },
   methods: {

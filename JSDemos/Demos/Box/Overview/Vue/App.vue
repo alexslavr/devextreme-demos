@@ -139,7 +139,7 @@
   </div>
 </template>
 <script>
-import { DxBox, DxItem } from 'devextreme-vue/box';
+import { DxBox, DxItem } from "devextreme-vue/box";
 
 export default {
   components: {

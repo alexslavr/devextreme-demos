@@ -1,33 +1,33 @@
-import React from 'react';
+import React from "react";
 
-import OData from 'devextreme/data/odata/store';
-import { Autocomplete } from 'devextreme-react/autocomplete';
-import CustomStore from 'devextreme/data/custom_store';
-import 'whatwg-fetch';
+import OData from "devextreme/data/odata/store";
+import { Autocomplete } from "devextreme-react/autocomplete";
+import CustomStore from "devextreme/data/custom_store";
+import "whatwg-fetch";
 
 import {
   names, surnames, positions,
-} from './data.js';
+} from "./data.js";
 
 function isNotEmpty(value) {
-  return value !== undefined && value !== null && value !== '';
+  return value !== undefined && value !== null && value !== "";
 }
 
 const states = new OData({
-  url: 'https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short',
-  key: 'Sate_ID',
-  keyType: 'Int32',
+  url: "https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short",
+  key: "Sate_ID",
+  keyType: "Int32",
 });
 
 const clientsStore = new CustomStore({
-  key: 'Value',
+  key: "Value",
   useDefaultSearch: true,
   load(loadOptions) {
-    let params = '?';
+    let params = "?";
     [
-      'skip',
-      'take',
-      'filter',
+      "skip",
+      "take",
+      "filter",
     ].forEach((option) => {
       if (option in loadOptions && isNotEmpty(loadOptions[option])) {
         params += `${option}=${JSON.stringify(loadOptions[option])}&`;
@@ -39,7 +39,7 @@ const clientsStore = new CustomStore({
       .then((data) => ({
         data: data.data,
       }))
-      .catch(() => { throw new Error('Data Loading Error'); });
+      .catch(() => { throw new Error("Data Loading Error"); });
   },
 });
 
@@ -47,11 +47,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
+      firstName: "",
+      lastName: "",
       position: positions[0],
-      state: '',
-      currentClient: '',
+      state: "",
+      currentClient: "",
     };
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -61,11 +61,11 @@ class App extends React.Component {
   }
 
   render() {
-    let fullInfo = '';
-    fullInfo += (`${this.state.firstName || ''} ${this.state.lastName || ''}`).trim();
-    fullInfo += (fullInfo && this.state.position) ? (`, ${this.state.position}`) : this.state.position || '';
-    fullInfo += (fullInfo && this.state.state) ? (`, ${this.state.state}`) : this.state.state || '';
-    fullInfo += (fullInfo && this.state.currentClient) ? (`, ${this.state.currentClient}`) : this.state.currentClient || '';
+    let fullInfo = "";
+    fullInfo += (`${this.state.firstName || ""} ${this.state.lastName || ""}`).trim();
+    fullInfo += (fullInfo && this.state.position) ? (`, ${this.state.position}`) : this.state.position || "";
+    fullInfo += (fullInfo && this.state.state) ? (`, ${this.state.state}`) : this.state.state || "";
+    fullInfo += (fullInfo && this.state.currentClient) ? (`, ${this.state.currentClient}`) : this.state.currentClient || "";
 
     return (
       <div className="form">

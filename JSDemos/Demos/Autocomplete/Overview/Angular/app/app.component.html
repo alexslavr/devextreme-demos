@@ -58,7 +58,7 @@
           [(value)]="state"
           (onValueChanged)="updateEmployeeInfo($event)"
         >
-          <div *dxTemplate="let item of 'item'">
+          <div *dxTemplate="let item of "item"">
             <span>{{ item.State_Long }} ({{ item.State_Short }})</span>
           </div>
         </dx-autocomplete>

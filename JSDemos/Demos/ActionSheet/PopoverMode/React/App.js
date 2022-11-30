@@ -1,11 +1,11 @@
-import React from 'react';
-import ActionSheet from 'devextreme-react/action-sheet';
-import List from 'devextreme-react/list';
+import React from "react";
+import ActionSheet from "devextreme-react/action-sheet";
+import List from "devextreme-react/list";
 
-import notify from 'devextreme/ui/notify';
+import notify from "devextreme/ui/notify";
 
-import RenderContactItem from './ContactItem.js';
-import { actionSheetItems, contacts } from './data.js';
+import RenderContactItem from "./ContactItem.js";
+import { actionSheetItems, contacts } from "./data.js";
 
 class App extends React.Component {
   constructor() {
@@ -13,7 +13,7 @@ class App extends React.Component {
 
     this.state = {
       isActionSheetVisible: false,
-      actionSheetTarget: '',
+      actionSheetTarget: "",
     };
 
     this.onActionSheetItemClick = this.onActionSheetItemClick.bind(this);

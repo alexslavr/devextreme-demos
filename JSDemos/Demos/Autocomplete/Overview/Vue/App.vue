@@ -95,32 +95,32 @@
   </div>
 </template>
 <script>
-import ODataStore from 'devextreme/data/odata/store';
-import { DxAutocomplete } from 'devextreme-vue/autocomplete';
-import CustomStore from 'devextreme/data/custom_store';
-import 'whatwg-fetch';
-import { names, surnames, positions } from './data.js';
+import ODataStore from "devextreme/data/odata/store";
+import { DxAutocomplete } from "devextreme-vue/autocomplete";
+import CustomStore from "devextreme/data/custom_store";
+import "whatwg-fetch";
+import { names, surnames, positions } from "./data.js";
 
 function isNotEmpty(value) {
-  return value !== undefined && value !== null && value !== '';
+  return value !== undefined && value !== null && value !== "";
 }
 
 const states = new ODataStore({
   url:
-    'https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short',
-  key: 'Sate_ID',
-  keyType: 'Int32',
+    "https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short",
+  key: "Sate_ID",
+  keyType: "Int32",
 });
 
 const clientsStore = new CustomStore({
-  key: 'Value',
+  key: "Value",
   useDefaultSearch: true,
   load(loadOptions) {
-    let params = '?';
+    let params = "?";
     [
-      'skip',
-      'take',
-      'filter',
+      "skip",
+      "take",
+      "filter",
     ].forEach((option) => {
       if (option in loadOptions && isNotEmpty(loadOptions[option])) {
         params += `${option}=${JSON.stringify(loadOptions[option])}&`;
@@ -132,7 +132,7 @@ const clientsStore = new CustomStore({
       .then((data) => ({
         data: data.data,
       }))
-      .catch(() => { throw new Error('Data Loading Error'); });
+      .catch(() => { throw new Error("Data Loading Error"); });
   },
 });
 
@@ -142,12 +142,12 @@ export default {
   },
   data() {
     return {
-      firstName: '',
-      lastName: '',
+      firstName: "",
+      lastName: "",
       position: positions[0],
-      state: '',
-      currentClient: '',
-      fullInfo: '',
+      state: "",
+      currentClient: "",
+      fullInfo: "",
 
       names,
       surnames,
@@ -158,11 +158,11 @@ export default {
   },
   methods: {
     updateEmployeeInfo() {
-      let fullInfo = '';
-      fullInfo += `${this.firstName || ''} ${this.lastName || ''}`.trim();
-      fullInfo += (fullInfo && this.position) ? `, ${this.position}` : this.position || '';
-      fullInfo += (fullInfo && this.state) ? `, ${this.state}` : this.state || '';
-      fullInfo += (fullInfo && this.currentClient) ? `, ${this.currentClient}` : this.currentClient || '';
+      let fullInfo = "";
+      fullInfo += `${this.firstName || ""} ${this.lastName || ""}`.trim();
+      fullInfo += (fullInfo && this.position) ? `, ${this.position}` : this.position || "";
+      fullInfo += (fullInfo && this.state) ? `, ${this.state}` : this.state || "";
+      fullInfo += (fullInfo && this.currentClient) ? `, ${this.currentClient}` : this.currentClient || "";
       this.fullInfo = fullInfo;
     },
   },

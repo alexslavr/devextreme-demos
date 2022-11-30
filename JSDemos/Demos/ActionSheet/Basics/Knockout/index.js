@@ -2,12 +2,12 @@ window.onload = function () {
   const viewModel = {
     actionSheetOptions: {
       dataSource: actionSheetItems,
-      title: 'Choose action',
+      title: "Choose action",
       visible: ko.observable(false),
       showTitle: ko.observable(true),
       showCancelButton: ko.observable(true),
       onCancelClick() {
-        showNotify('Cancel');
+        showNotify("Cancel");
       },
       onItemClick(value) {
         showNotify(value.itemData.text);
@@ -15,7 +15,7 @@ window.onload = function () {
     },
 
     buttonOptions: {
-      text: 'Click to show Action Sheet',
+      text: "Click to show Action Sheet",
       onClick(e) {
         e.model.actionSheetOptions.visible(true);
       },
@@ -26,5 +26,5 @@ window.onload = function () {
     DevExpress.ui.notify(`The "${value}" button is clicked.`);
   }
 
-  ko.applyBindings(viewModel, document.getElementById('demo'));
+  ko.applyBindings(viewModel, document.getElementById("demo"));
 };
