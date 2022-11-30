@@ -1,0 +1,18 @@
+name: Get Changed Files
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build DevExtreme
+    timeout-minutes: 15
+
+    steps:
+      - name: Get changed files
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'force all tests')
+        run: |
+          curl --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+            --url https://api.github.com/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files > changed-files.json
