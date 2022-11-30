@@ -1,7 +1,6 @@
 name: Get Changed Files
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -13,7 +12,7 @@ jobs:
     steps:
       - name: Get changed files
         run: |
-          total=github.event.pull_request.changed_files;
+          total=${{github.event.pull_request.changed_files}};
           page_size=10;
           for ((i=1; i<$((total/page_size + 1));i++));
            do curl --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
