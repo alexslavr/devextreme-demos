@@ -11,9 +11,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        
+
       - name: Get changed files
         uses: ./.github/actions/get-changed-files
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          files-count: ${{github.event.pull_request.changed_files}}
+          page-size: '30'
 
       - name: Copy artifacts
         uses: actions/upload-artifact@v3
