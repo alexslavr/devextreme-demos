@@ -11,14 +11,7 @@ jobs:
 
     steps:
       - name: Get changed files
-        run: |
-          total=${{github.event.pull_request.changed_files}};
-          page_size=10;
-          for ((i=1; i<$((total/page_size + 1));i++));
-           do curl --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-            --url https://api.github.com/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files?per_page=$page_size&page=$i > "./content$i.json";
-          done;
-          cat ./content*.json | jq -s 'add' >| ${{ github.workspace }}/changed-files.json
+        uses: ./.github/actions/get-changed-files
 
       - name: Copy artifacts
         uses: actions/upload-artifact@v3
