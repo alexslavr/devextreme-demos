@@ -18,5 +18,7 @@ runs:
         
         echo DONE!!!!!!!
         cat ./content*.json | jq -s 'add'
+        echo content_2
+        cat ./content2.json
         echo SAVE!!!!!!!
         cat ./content*.json | jq -s 'add' > ${{ github.workspace }}/changed-files.json
