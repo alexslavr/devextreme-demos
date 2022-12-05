@@ -13,7 +13,7 @@ runs:
         page_size=30
         for ((i=1; i<=$((${{github.event.pull_request.changed_files}}/$page_size));i++));
          do curl --header 'authorization: Bearer ${{ inputs.github-token }}' \
-          --url https://api.github.com/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files?per_page=$page_size&page=$i >> "./content$i.json";
+          --url https://api.github.com/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files?per_page=$page_size&page=$i -o ./content$i.json;
           sleep 0.3;
         done;
         
