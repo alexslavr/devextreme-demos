@@ -2,22 +2,21 @@ name: "Get changed files"
 description: "Get changed files"
 inputs:
   github-token:
-    description: 'Who to greet'
+    description: 'GitHub API token'
     required: true
-  files-count:
-    description: 'Who to greet'
-    required: true
-  page-size:
-    description: 'Who to greet'
-    default: '30'
 
 runs:
   using: composite
   steps:
     - shell: bash
       run: |
-        for ((i=1; i<=$((${{inputs.files-count}}/${{inputs.page-size}}));i++));
+        page_size=30
+        for ((i=1; i<=$((${{github.event.pull_request.changed_files}}/$page_size));i++));
          do curl --header 'authorization: Bearer ${{ inputs.github-token }}' \
-          --url https://api.github.com/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files?per_page=$inputs.page-size&page=$i > "./content$i.json";
+          --url https://api.github.com/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files?per_page=$page_size&page=$i > "./content$i.json";
         done;
+        
+        echo DONE!!!!!!!
+        cat ./content*.json | jq -s 'add'
+        echo SAVE!!!!!!!
         cat ./content*.json | jq -s 'add' > ${{ github.workspace }}/changed-files.json
