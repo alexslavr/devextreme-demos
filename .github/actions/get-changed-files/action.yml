@@ -21,6 +21,6 @@ runs:
       run: |
         gh api \
           -H "Accept: application/vnd.github+json" \
-          "/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files" --paginate --jq '.[].filename' >> changed-files.json
+          "/repos/${{github.repository}}/pulls/${{github.event.pull_request.number}}/files" --paginate --jq 'map({filename})' >> changed-files.json
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
