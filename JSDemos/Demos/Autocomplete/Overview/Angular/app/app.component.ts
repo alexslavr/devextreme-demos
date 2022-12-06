@@ -1,28 +1,28 @@
-import { Component, NgModule, enableProdMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
+import { Component, NgModule, enableProdMode } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { HttpClient, HttpClientModule, HttpParams } from "@angular/common/http";
+import { lastValueFrom } from "rxjs";
 
-import { DxAutocompleteModule, DxTemplateModule } from 'devextreme-angular';
-import data from 'devextreme/data/odata/store';
-import CustomStore from 'devextreme/data/custom_store';
+import { DxAutocompleteModule, DxTemplateModule } from "devextreme-angular";
+import data from "devextreme/data/odata/store";
+import CustomStore from "devextreme/data/custom_store";
 
-import { Service } from './app.service';
+import { Service } from "./app.service";
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
 }
 
 function isNotEmpty(value: any): boolean {
-  return value !== undefined && value !== null && value !== '';
+  return value !== undefined && value !== null && value !== "";
 }
 
 @Component({
-  selector: 'demo-app',
+  selector: "demo-app",
   providers: [Service],
-  templateUrl: 'app/app.component.html',
-  styleUrls: ['app/app.component.css'],
+  templateUrl: "app/app.component.html",
+  styleUrls: ["app/app.component.css"],
 })
 
 export class AppComponent {
@@ -36,44 +36,44 @@ export class AppComponent {
 
   clientsStore: CustomStore;
 
-  firstName = '';
+  firstName = "";
 
-  lastName = '';
+  lastName = "";
 
   position: string;
 
-  state = '';
+  state = "";
 
-  currentClient = '';
+  currentClient = "";
 
-  fullInfo = '';
+  fullInfo = "";
 
   constructor(httpClient: HttpClient, service: Service) {
     this.clientsStore = new CustomStore({
-      key: 'Value',
+      key: "Value",
       useDefaultSearch: true,
       load(loadOptions: any) {
         let params: HttpParams = new HttpParams();
         [
-          'skip',
-          'take',
-          'filter',
+          "skip",
+          "take",
+          "filter",
         ].forEach((option) => {
           if (option in loadOptions && isNotEmpty(loadOptions[option])) {
             params = params.set(option, JSON.stringify(loadOptions[option]));
           }
         });
-        return lastValueFrom(httpClient.get('https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi/CustomersLookup', { params }))
+        return lastValueFrom(httpClient.get("https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi/CustomersLookup", { params }))
           .then((data: any) => ({
             data: data.data,
           }))
-          .catch((error) => { throw 'Data Loading Error'; });
+          .catch((error) => { throw "Data Loading Error"; });
       },
     });
     this.states = new data({
-      url: 'https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short',
-      key: 'Sate_ID',
-      keyType: 'Int32',
+      url: "https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short",
+      key: "Sate_ID",
+      keyType: "Int32",
     });
     this.names = service.getNames();
     this.surnames = service.getSurnames();
@@ -82,11 +82,11 @@ export class AppComponent {
   }
 
   updateEmployeeInfo() {
-    let result = '';
-    result += (`${this.firstName || ''} ${this.lastName || ''}`).trim();
-    result += (result && this.position) ? (`, ${this.position}`) : this.position || '';
-    result += (result && this.state) ? (`, ${this.state}`) : this.state || '';
-    result += (result && this.currentClient) ? (`, ${this.currentClient}`) : this.currentClient || '';
+    let result = "";
+    result += (`${this.firstName || ""} ${this.lastName || ""}`).trim();
+    result += (result && this.position) ? (`, ${this.position}`) : this.position || "";
+    result += (result && this.state) ? (`, ${this.state}`) : this.state || "";
+    result += (result && this.currentClient) ? (`, ${this.currentClient}`) : this.currentClient || "";
     this.fullInfo = result;
   }
 }

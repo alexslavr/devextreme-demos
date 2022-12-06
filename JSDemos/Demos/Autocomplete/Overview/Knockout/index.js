@@ -1,14 +1,14 @@
 window.onload = function () {
-  let firstName = '';
-  let lastName = '';
+  let firstName = "";
+  let lastName = "";
   const position = positions[0];
-  let state = '';
-  let currentClient = '';
+  let state = "";
+  let currentClient = "";
 
   const viewModel = {
     defaultMode: {
       dataSource: names,
-      placeholder: 'Type first name...',
+      placeholder: "Type first name...",
       onValueChanged(data) {
         firstName = data.value;
         updateEmployeeInfo();
@@ -16,7 +16,7 @@ window.onload = function () {
     },
     withClearButton: {
       dataSource: surnames,
-      placeholder: 'Type last name...',
+      placeholder: "Type last name...",
       showClearButton: true,
       onValueChanged(data) {
         lastName = data.value;
@@ -30,12 +30,12 @@ window.onload = function () {
     },
     customItemTemplate: {
       dataSource: new DevExpress.data.ODataStore({
-        url: 'https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short',
-        key: 'Sate_ID',
-        keyType: 'Int32',
+        url: "https://js.devexpress.com/Demos/DevAV/odata/States?$select=Sate_ID,State_Long,State_Short",
+        key: "Sate_ID",
+        keyType: "Int32",
       }),
-      placeholder: 'Type state name...',
-      valueExpr: 'State_Long',
+      placeholder: "Type state name...",
+      valueExpr: "State_Long",
       itemTemplate(data) {
         return $(`<div>${data.State_Long} (${data.State_Short})</div>`);
       },
@@ -46,15 +46,15 @@ window.onload = function () {
     },
     customStoreUsage: {
       dataSource: new DevExpress.data.CustomStore({
-        key: 'Value',
+        key: "Value",
         useDefaultSearch: true,
         load(loadOptions) {
           const deferred = $.Deferred();
-          let params = '?';
+          let params = "?";
           [
-            'skip',
-            'take',
-            'filter',
+            "skip",
+            "take",
+            "filter",
           ].forEach((option) => {
             if (option in loadOptions && isNotEmpty(loadOptions[option])) {
               params += `${option}=${JSON.stringify(loadOptions[option])}&`;
@@ -63,7 +63,7 @@ window.onload = function () {
           params = params.slice(0, -1);
 
           const xhr = new XMLHttpRequest();
-          xhr.open('GET', `https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi/CustomersLookup${params}`, true);
+          xhr.open("GET", `https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi/CustomersLookup${params}`, true);
 
           xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
@@ -71,7 +71,7 @@ window.onload = function () {
                 const result = JSON.parse(xhr.responseText);
                 deferred.resolve(result.data);
               } else {
-                deferred.reject('Data Loading Error');
+                deferred.reject("Data Loading Error");
               }
             }
           };
@@ -82,30 +82,30 @@ window.onload = function () {
       }),
       minSearchLength: 2,
       searchTimeout: 500,
-      placeholder: 'Type client name...',
-      valueExpr: 'Text',
+      placeholder: "Type client name...",
+      valueExpr: "Text",
       onValueChanged(data) {
         currentClient = data.value;
         updateEmployeeInfo();
       },
     },
-    fullInfo: ko.observable(''),
+    fullInfo: ko.observable(""),
 
   };
 
   function updateEmployeeInfo() {
-    let result = '';
-    result += $.trim(`${firstName || ''} ${lastName || ''}`);
-    result += (result && position) ? (`, ${position}`) : position || '';
-    result += (result && state) ? (`, ${state}`) : state || '';
-    result += (result && currentClient) ? (`, ${currentClient}`) : currentClient || '';
+    let result = "";
+    result += $.trim(`${firstName || ""} ${lastName || ""}`);
+    result += (result && position) ? (`, ${position}`) : position || "";
+    result += (result && state) ? (`, ${state}`) : state || "";
+    result += (result && currentClient) ? (`, ${currentClient}`) : currentClient || "";
 
     viewModel.fullInfo(result);
   }
 
   function isNotEmpty(value) {
-    return value !== undefined && value !== null && value !== '';
+    return value !== undefined && value !== null && value !== "";
   }
 
-  ko.applyBindings(viewModel, document.getElementById('autocomplete-demo'));
+  ko.applyBindings(viewModel, document.getElementById("autocomplete-demo"));
 };

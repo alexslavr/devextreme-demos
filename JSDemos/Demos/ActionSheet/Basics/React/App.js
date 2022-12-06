@@ -1,9 +1,9 @@
-import React from 'react';
-import ActionSheet from 'devextreme-react/action-sheet';
-import Button from 'devextreme-react/button';
-import Switch from 'devextreme-react/switch';
-import notify from 'devextreme/ui/notify';
-import { actionSheetItems } from './data.js';
+import React from "react";
+import ActionSheet from "devextreme-react/action-sheet";
+import Button from "devextreme-react/button";
+import Switch from "devextreme-react/switch";
+import notify from "devextreme/ui/notify";
+import { actionSheetItems } from "./data.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   onActionSheetCancelClick() {
-    this.onActionSheetButtonClick('Cancel');
+    this.onActionSheetButtonClick("Cancel");
   }
 
   onActionSheetButtonClick(buttonName) {

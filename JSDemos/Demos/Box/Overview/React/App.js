@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 import Box, {
   Item,
-} from 'devextreme-react/box';
+} from "devextreme-react/box";
 
 class App extends React.Component {
   render() {

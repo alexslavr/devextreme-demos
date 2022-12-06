@@ -1,34 +1,34 @@
-import { NgModule, Component, enableProdMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { NgModule, Component, enableProdMode } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { DxActionSheetModule, DxListModule } from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
-import { Contact, Service } from './app.service';
+import { DxActionSheetModule, DxListModule } from "devextreme-angular";
+import notify from "devextreme/ui/notify";
+import { Contact, Service } from "./app.service";
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
 }
 
 @Component({
-  selector: 'demo-app',
-  templateUrl: 'app/app.component.html',
-  styleUrls: ['app/app.component.css'],
+  selector: "demo-app",
+  templateUrl: "app/app.component.html",
+  styleUrls: ["app/app.component.css"],
   providers: [Service],
 })
 export class AppComponent {
   contacts: Contact[];
 
   commands: any[] = [
-    { text: 'Call' },
-    { text: 'Send message' },
-    { text: 'Edit' },
-    { text: 'Delete' },
+    { text: "Call" },
+    { text: "Send message" },
+    { text: "Edit" },
+    { text: "Delete" },
   ];
 
   actionSheetVisible = false;
 
-  actionSheetTarget: any = '';
+  actionSheetTarget: any = "";
 
   constructor(service: Service) {
     this.contacts = service.getContacts();

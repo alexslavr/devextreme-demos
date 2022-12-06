@@ -1,6 +1,6 @@
-const DemoApp = angular.module('DemoApp', ['dx']);
+const DemoApp = angular.module("DemoApp", ["dx"]);
 
-DemoApp.controller('DemoController', ($scope) => {
+DemoApp.controller("DemoController", ($scope) => {
   const showNotify = function (value) {
     DevExpress.ui.notify(`The "${value}" button is clicked.`);
   };
@@ -10,23 +10,23 @@ DemoApp.controller('DemoController', ($scope) => {
 
   $scope.actionSheetOptions = {
     dataSource: actionSheetItems,
-    title: 'Choose action',
+    title: "Choose action",
     onCancelClick() {
-      showNotify('Cancel');
+      showNotify("Cancel");
     },
     onItemClick(value) {
       showNotify(value.itemData.text);
     },
     bindingOptions: {
-      visible: 'actionSheetVisible',
-      showTitle: 'showTitleValue',
-      showCancelButton: 'showCancelButtonValue',
+      visible: "actionSheetVisible",
+      showTitle: "showTitleValue",
+      showCancelButton: "showCancelButtonValue",
 
     },
   };
 
   $scope.buttonOptions = {
-    text: 'Click to show Action Sheet',
+    text: "Click to show Action Sheet",
     onClick() {
       $scope.actionSheetVisible = true;
     },

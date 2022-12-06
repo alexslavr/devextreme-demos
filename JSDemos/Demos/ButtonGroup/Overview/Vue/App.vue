@@ -3,7 +3,7 @@
     <div class="buttongroups-container">
       <DxButtonGroup
         :items="alignments"
-        :selected-item-keys="['left']"
+        :selected-item-keys="["left"]"
         key-expr="alignment"
         styling-mode="outlined"
         @item-click="itemClick"
@@ -19,7 +19,7 @@
     <div class="buttongroups-container">
       <DxButtonGroup
         :items="alignments"
-        :selected-item-keys="['left']"
+        :selected-item-keys="["left"]"
         key-expr="alignment"
         styling-mode="text"
         @item-click="itemClick"
@@ -36,9 +36,9 @@
   </div>
 </template>
 <script>
-import DxButtonGroup from 'devextreme-vue/button-group';
-import notify from 'devextreme/ui/notify';
-import { alignments, fontStyles } from './data.js';
+import DxButtonGroup from "devextreme-vue/button-group";
+import notify from "devextreme/ui/notify";
+import { alignments, fontStyles } from "./data.js";
 
 export default {
   components: {
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     itemClick(e) {
-      notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, 'success', 1000);
+      notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, "success", 1000);
     },
   },
 };

@@ -2,9 +2,9 @@ window.onload = function () {
   const viewModel = {
     actionSheetOptions: {
       dataSource: actionSheetItems,
-      title: 'Choose action',
+      title: "Choose action",
       visible: ko.observable(false),
-      target: ko.observable(''),
+      target: ko.observable(""),
       usePopover: true,
       onItemClick(value) {
         DevExpress.ui.notify(`The "${value.itemData.text}" button is clicked.`);
@@ -20,5 +20,5 @@ window.onload = function () {
     },
   };
 
-  ko.applyBindings(viewModel, document.getElementById('demo'));
+  ko.applyBindings(viewModel, document.getElementById("demo"));
 };

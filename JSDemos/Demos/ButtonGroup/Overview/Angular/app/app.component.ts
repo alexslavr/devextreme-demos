@@ -1,20 +1,20 @@
-import { Component, NgModule, enableProdMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { DxButtonGroupModule } from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
+import { Component, NgModule, enableProdMode } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { DxButtonGroupModule } from "devextreme-angular";
+import notify from "devextreme/ui/notify";
 
-import { Alignment, FontStyle, Service } from './app.service';
+import { Alignment, FontStyle, Service } from "./app.service";
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
 }
 
 @Component({
-  selector: 'demo-app',
+  selector: "demo-app",
   providers: [Service],
-  templateUrl: 'app/app.component.html',
-  styleUrls: ['app/app.component.css'],
+  templateUrl: "app/app.component.html",
+  styleUrls: ["app/app.component.css"],
   preserveWhitespaces: true,
 })
 
@@ -29,7 +29,7 @@ export class AppComponent {
   }
 
   itemClick(e) {
-    notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, 'success', 1000);
+    notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, "success", 1000);
   }
 }
 

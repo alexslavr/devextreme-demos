@@ -1,41 +1,41 @@
 $(() => {
-  $('#single-selection').dxButtonGroup({
+  $("#single-selection").dxButtonGroup({
     items: alignments,
-    keyExpr: 'alignment',
-    stylingMode: 'outlined',
-    selectedItemKeys: ['left'],
+    keyExpr: "alignment",
+    stylingMode: "outlined",
+    selectedItemKeys: ["left"],
     onItemClick(e) {
-      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, 'success', 1000);
+      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, "success", 1000);
     },
   });
 
-  $('#multiple-selection').dxButtonGroup({
+  $("#multiple-selection").dxButtonGroup({
     items: fontStyles,
-    keyExpr: 'style',
-    stylingMode: 'outlined',
-    selectionMode: 'multiple',
+    keyExpr: "style",
+    stylingMode: "outlined",
+    selectionMode: "multiple",
     onItemClick(e) {
-      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, 'success', 1000);
+      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, "success", 1000);
     },
   });
 
-  $('#single-selection-styling-mode').dxButtonGroup({
+  $("#single-selection-styling-mode").dxButtonGroup({
     items: alignments,
-    keyExpr: 'alignment',
-    stylingMode: 'text',
-    selectedItemKeys: ['left'],
+    keyExpr: "alignment",
+    stylingMode: "text",
+    selectedItemKeys: ["left"],
     onItemClick(e) {
-      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, 'success', 1000);
+      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, "success", 1000);
     },
   });
 
-  $('#multiple-selection-styling-mode').dxButtonGroup({
+  $("#multiple-selection-styling-mode").dxButtonGroup({
     items: fontStyles,
-    keyExpr: 'style',
-    stylingMode: 'text',
-    selectionMode: 'multiple',
+    keyExpr: "style",
+    stylingMode: "text",
+    selectionMode: "multiple",
     onItemClick(e) {
-      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, 'success', 1000);
+      DevExpress.ui.notify({ message: `The "${e.itemData.hint}" button was clicked`, width: 320 }, "success", 1000);
     },
   });
 });

@@ -26,7 +26,7 @@ To handle value changes, implement the [onValueChanged](/Documentation/ApiRefere
 
 ## Appearance Customization
 
-You can specify the following properties to customize the Autocomplete component's appearance:
+You can specify the following properties to customize the Autocomplete component"s appearance:
 
 * [placeholder](/Documentation/ApiReference/UI_Components/dxAutocomplete/Configuration/#placeholder)             
 The text that is displayed when Autocomplete is empty. 

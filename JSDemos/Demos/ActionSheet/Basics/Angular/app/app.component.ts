@@ -1,25 +1,25 @@
-import { NgModule, Component, enableProdMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { NgModule, Component, enableProdMode } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { DxActionSheetModule, DxButtonModule, DxSwitchModule } from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
+import { DxActionSheetModule, DxButtonModule, DxSwitchModule } from "devextreme-angular";
+import notify from "devextreme/ui/notify";
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
 }
 
 @Component({
-  selector: 'demo-app',
-  templateUrl: 'app/app.component.html',
-  styleUrls: ['app/app.component.css'],
+  selector: "demo-app",
+  templateUrl: "app/app.component.html",
+  styleUrls: ["app/app.component.css"],
 })
 export class AppComponent {
   commands: any[] = [
-    { text: 'Call' },
-    { text: 'Send message' },
-    { text: 'Edit' },
-    { text: 'Delete' },
+    { text: "Call" },
+    { text: "Send message" },
+    { text: "Edit" },
+    { text: "Delete" },
   ];
 
   showNotify(value) {

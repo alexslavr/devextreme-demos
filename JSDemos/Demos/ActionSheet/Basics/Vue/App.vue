@@ -6,7 +6,7 @@
       :show-title="showTitle"
       :show-cancel-button="showCancelButton"
       title="Choose action"
-      @cancelClick="showClickNotification('Cancel')"
+      @cancelClick="showClickNotification("Cancel")"
       @itemClick="showClickNotification($event.itemData.text)"
     />
     <div class="button">
@@ -30,11 +30,11 @@
   </div>
 </template>
 <script>
-import DxActionSheet from 'devextreme-vue/action-sheet';
-import DxSwitch from 'devextreme-vue/switch';
-import DxButton from 'devextreme-vue/button';
-import notify from 'devextreme/ui/notify';
-import { actionSheetItems } from './data.js';
+import DxActionSheet from "devextreme-vue/action-sheet";
+import DxSwitch from "devextreme-vue/switch";
+import DxButton from "devextreme-vue/button";
+import notify from "devextreme/ui/notify";
+import { actionSheetItems } from "./data.js";
 
 export default {
   components: {
