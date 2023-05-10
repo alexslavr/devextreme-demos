@@ -1,0 +1,59 @@
+name: Visual Tests Test
+
+concurrency:
+  group: wf-${{github.event.pull_request.number || github.sha}}-${{github.workflow}}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "[0-9][0-9]_[0-9]"
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * 6,0'
+
+jobs:
+
+  testcafe:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        CONSTEL: [jquery(1/4), jquery(2/4), jquery(3/4), jquery(4/4)]
+
+    runs-on: ubuntu-latest
+    name: ${{ matrix.CONSTEL }}
+    timeout-minutes: 20
+
+    steps:
+      - name: Get sources
+        uses: actions/checkout@v3
+
+      - name: Get changed files
+        uses: ./.github/actions/get-changed-files
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'force all tests')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run TestCafe tests
+        env:
+          CHANGEDFILEINFOSPATH: ${{ github.workspace }}/changed-files.json
+          BROWSERS: chrome:headless --disable-partial-raster --disable-skia-runtime-opts --run-all-compositor-stages-before-draw --disable-new-content-rendering-timeout --disable-threaded-animation --disable-threaded-scrolling --disable-checker-imaging --disable-image-animation-resync --use-gl="swiftshader" --disable-features=PaintHolding --js-flags=--random-seed=2147483647 --font-render-hinting=none --disable-font-subpixel-positioning
+          #DEBUG: hammerhead:*,testcafe:*
+          CONCURRENCY: 4
+          TCQUARANTINE: true
+          CONSTEL: ${{ matrix.CONSTEL }}
+          # DISABLE_DEMO_TEST_SETTINGS: all # Uncomment to ignore all the visualtestrc.json settings
+          # DISABLE_DEMO_TEST_SETTINGS: ignore # Uncomment to ignore the `ignore` field
+          # DISABLE_DEMO_TEST_SETTINGS: comparison-options # Uncomment to ignore the `comparison-options` field
+          CI_ENV: true # The `ignore` field in the visualtestrc.json should be disabled when running test locally
+        run: npm run test-testcafe
+
+      - name: Copy screenshots artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots
+          path: ${{ github.workspace }}/testing/artifacts/compared-screenshots/*
+          if-no-files-found: ignore

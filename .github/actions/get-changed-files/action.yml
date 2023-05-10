@@ -11,6 +11,4 @@ runs:
           -H "Accept: application/vnd.github+json" \
           "/repos/{owner}/{repo}/pulls/${{github.event.pull_request.number}}/files" --paginate \
           --jq '.[] | {filename:.filename}' | jq -s > changed-files.json
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
