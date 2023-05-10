@@ -1,9 +1,5 @@
 name: Visual Tests Test
 
-concurrency:
-  group: wf-${{github.event.pull_request.number || github.sha}}-${{github.workflow}}
-  cancel-in-progress: true
-
 on:
   pull_request:
   push:
