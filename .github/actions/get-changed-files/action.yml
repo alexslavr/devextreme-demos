@@ -9,6 +9,5 @@ runs:
       run: |
         gh api \
           -H "Accept: application/vnd.github+json" \
-          "/repos/{owner}/{repo}/pulls/${{github.event.pull_request.number}}/files" --paginate \
+          "/repos/DevExpress/devextreme-demos/pulls/2584/files" --paginate \
           --jq '.[] | {filename:.filename}' | jq -s > changed-files.json
-
