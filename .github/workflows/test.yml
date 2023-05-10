@@ -7,13 +7,9 @@ on:
 
 jobs:
   testcafe:
-    strategy:
-      fail-fast: false
-      matrix:
-        CONSTEL: [jquery(1/4), jquery(2/4), jquery(3/4), jquery(4/4)]
 
     runs-on: ubuntu-latest
-    name: ${{ matrix.CONSTEL }}
+    name: Test
     timeout-minutes: 20
 
     steps:
@@ -22,7 +18,6 @@ jobs:
 
       - name: Get changed files
         uses: ./.github/actions/get-changed-files
-        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'force all tests')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,7 +28,6 @@ jobs:
           #DEBUG: hammerhead:*,testcafe:*
           CONCURRENCY: 4
           TCQUARANTINE: true
-          CONSTEL: ${{ matrix.CONSTEL }}
           # DISABLE_DEMO_TEST_SETTINGS: all # Uncomment to ignore all the visualtestrc.json settings
           # DISABLE_DEMO_TEST_SETTINGS: ignore # Uncomment to ignore the `ignore` field
           # DISABLE_DEMO_TEST_SETTINGS: comparison-options # Uncomment to ignore the `comparison-options` field
